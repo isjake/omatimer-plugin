@@ -1,9 +1,10 @@
 # Omatimer
 
-A countdown timer for the Omarchy bar. Type a duration, press Enter, and the
-bar counts down. When it's up you get a chime and a notification.
+A countdown timer for Omarchy. Each timer is a real window that tiles,
+floats and closes like any app, or, if you prefer, a popup from the bar.
+Type a duration, press Enter; when it's up you get a chime and a notification.
 
-<img src="preview.png" alt="Omatimer: the bar counting down, with the popup open" width="520">
+<img src="preview.png" alt="Three Omatimer windows tiled side by side, two counting down and one idle, with the bar showing 4m56s 2/3" width="720">
 
 This is the shell-plugin version of [omatimer](https://github.com/isjake/omatimer),
 the standalone Qt app. It runs inside the Omarchy shell, so there's nothing to
@@ -15,28 +16,51 @@ build and no binary to install.
 omarchy plugin add https://github.com/isjake/omatimer-plugin.git --enable
 ```
 
-Or find **Omatimer** in the plugin marketplace. It lands on the right of the
-bar; drag it anywhere, or `omarchy bar move io.github.isjake.omatimer --section center`.
+Or find **Omatimer** in the plugin marketplace. Then open a timer from the
+launcher (SUPER+SPACE → Omatimer) or the bar button, which lands on the right
+of the bar (drag it anywhere, or remove it: it's optional).
+
+## How timers open
+
+Pick under **?** → *Timers*:
+
+| Mode | What you get |
+|------|--------------|
+| Multiple timers, in windows (default) | every Omatimer you open is a new timer in its own window, like an app. Closing the window (Super+W) ends that timer. |
+| One timer, in the bar | a popup from the bar button, as in 1.0. |
+
+Timer windows have the class `org.quickshell` and the titles `Omatimer`,
+`Omatimer 2`, and so on, so window rules match them by title. For example, to float them, in
+`~/.config/hypr/hyprland.lua`:
+
+```lua
+o.window({ class = "^org\\.quickshell$", title = "^Omatimer" }, { float = true })
+```
+
+Windows live inside the Omarchy shell, so an Omarchy or plugin update
+restarts them: they close and come straight back, still counting.
 
 ## Remove
 
 ```sh
 omarchy plugin remove io.github.isjake.omatimer
-rm -rf ~/.local/state/omatimer   # optional: the saved duration and settings
+rm -rf ~/.local/state/omatimer   # optional: saved timers and settings
 ```
 
 ## Use
 
 | Where | Action |
 |-------|--------|
-| Bar, left click | open the timer |
-| Bar, right click | start or stop |
-| Bar, middle click | reset |
+| Bar, left click | go to the timer's window (or open one) |
+| Bar, right click | start or stop it |
+| Bar, middle click | reset it |
+| Bar, `2/3` or scroll | cycle through your timers |
 | Enter / Space | start or stop |
 | R | reset to the saved duration |
 | Ctrl+M | mute (also the speaker button) |
-| ? / F1 | show the shortcuts, volume and sounds |
-| Esc | close |
+| Ctrl+N | a new timer |
+| ? / F1 | show the shortcuts and settings |
+| Esc | close the popup (bar mode) |
 
 Durations accept plain seconds (`90`) or units (`1h 30m 10s`, `1.5m`), and
 the display counts down in the same notation (`1h5m30s`, `2m`, `45s`), so
@@ -52,20 +76,24 @@ as done without ringing late.
 ## From scripts and keybindings
 
 ```sh
-omarchy-shell omatimer start 25m    # start, optionally with a new duration
-omarchy-shell omatimer toggle       # start or stop
+omarchy-shell omatimer open         # a new timer
+omarchy-shell omatimer start 25m    # a new timer, started
+omarchy-shell omatimer set 1h30m    # a new timer, not started
+omarchy-shell omatimer toggle       # start or stop the timer the bar shows
 omarchy-shell omatimer stop
 omarchy-shell omatimer reset
-omarchy-shell omatimer set 1h30m    # set without starting
+omarchy-shell omatimer next         # or previous: cycle the bar's timer
+omarchy-shell omatimer focus        # go to the bar's timer
 omarchy-shell omatimer mute
-omarchy-shell omatimer open         # or close
-omarchy-shell omatimer status       # e.g. "running 24m13s"
+omarchy-shell omatimer settings
+omarchy-shell omatimer mode windows # or bar
+omarchy-shell omatimer status       # one line per timer, e.g. "running 24m13s"
 ```
 
-For example, in `~/.config/hypr/bindings.conf`:
+For example, in `~/.config/hypr/bindings.lua`:
 
-```
-bindd = SUPER ALT, T, Start a 25 minute timer, exec, omarchy-shell omatimer start 25m
+```lua
+o.bind("SUPER + ALT + T", "Start a 25 minute timer", "omarchy-shell omatimer start 25m")
 ```
 
 ## Sounds
@@ -80,7 +108,9 @@ notification uses `notify-send`. Both come with Omarchy.
 
 ## Files
 
-- Settings and the current timer: `~/.local/state/omatimer/plugin.json`
+- Settings and timers: `~/.local/state/omatimer/plugin.json`
+- The launcher entry: `~/.local/share/applications/io.github.isjake.omatimer.desktop`,
+  written when the plugin is enabled and removed when it's disabled or removed.
 - Nothing else is written outside the plugin's own folder.
 
 ## Development

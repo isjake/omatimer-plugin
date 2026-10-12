@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=Omatimer
+GenericName=Timer
+Comment=A countdown timer
+Exec=omarchy-shell omatimer open
+TryExec=omarchy-shell
+Icon=@ICON@
+Terminal=false
+StartupNotify=false
+Categories=Utility;Clock;
+Keywords=timer;countdown;pomodoro;alarm;omatimer;
+X-Omatimer-Plugin-Managed=true

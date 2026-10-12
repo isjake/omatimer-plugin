@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "io.github.isjake.omatimer",
   "name": "Omatimer",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "isjake",
   "license": "MIT",
-  "description": "A countdown timer in your bar. Type 25m or 1h30m, press Enter, and the bar counts down; a chime and a notification when it's done. Survives shell restarts.",
+  "description": "Countdown timers as real windows that tile and float, like an app, or in a bar popup. Type 25m or 1h30m and press Enter; a chime and a notification when it is done.",
   "homepage": "https://github.com/isjake/omatimer-plugin",
   "kinds": ["bar-widget", "service"],
   "entryPoints": {
