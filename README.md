@@ -100,8 +100,8 @@ o.bind("SUPER + ALT + T", "Start a 25 minute timer", "omarchy-shell omatimer sta
 
 Sounds play at 20% of the system volume by default; the slider under `?`
 changes that. The three built-in sounds (chime, bell, click) ship with the
-plugin. If the freedesktop sound theme is installed
-(`sudo pacman -S sound-theme-freedesktop`), its sounds are listed too.
+plugin. If the freedesktop sound theme is installed (the
+`sound-theme-freedesktop` package), its sounds are listed too.
 
 Playback uses `pw-play` from PipeWire, or `paplay` if that's missing. The
 notification uses `notify-send`. Both come with Omarchy.
