@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "io.github.isjake.omatimer",
+  "name": "Omatimer",
+  "version": "1.0.0",
+  "author": "isjake",
+  "license": "MIT",
+  "description": "A countdown timer in your bar. Type 25m or 1h30m, press Enter, and the bar counts down; a chime and a notification when it's done. Survives shell restarts.",
+  "homepage": "https://github.com/isjake/omatimer-plugin",
+  "kinds": ["bar-widget", "service"],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml",
+    "service": "Service.qml"
+  },
+  "barWidget": {
+    "displayName": "Omatimer",
+    "description": "Countdown timer: left click to open, right click to start or stop, middle click to reset.",
+    "category": "Productivity",
+    "aliases": ["timer", "countdown", "omatimer", "pomodoro"],
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
