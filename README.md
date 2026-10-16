@@ -4,7 +4,7 @@ A countdown timer for Omarchy. Each timer is a real window that tiles,
 floats and closes like any app, or, if you prefer, a popup from the bar.
 Type a duration, press Enter; when it's up you get a chime and a notification.
 
-<img src="preview.png" alt="Three Omatimer windows tiled side by side, two counting down and one idle, with the bar showing 4m56s 2/3" width="720">
+<img src="preview.png" alt="A workout log in Neovim beside two Omatimer windows counting down, 18m17s and 44s, on the Tokyo Night theme" width="720">
 
 This is the shell-plugin version of [omatimer](https://github.com/isjake/omatimer),
 the standalone Qt app. It runs inside the Omarchy shell, so there's nothing to
@@ -72,6 +72,10 @@ dims. When it's done it says `done` until you open it.
 A running timer is saved with its deadline, so it carries on through a shell
 restart or a plugin update. If it ran out while the shell was down, it shows
 as done without ringing late.
+
+The timers take their colors from your Omarchy theme, light or dark:
+
+<img src="preview-rose-pine.png" alt="The same workout log and two timers on the light Rosé Pine theme" width="720">
 
 ## From scripts and keybindings
 
