@@ -4,11 +4,13 @@ A countdown timer for Omarchy. Each timer is a real window that tiles,
 floats and closes like any app, or, if you prefer, a popup from the bar.
 Type a duration, press Enter; when it's up you get a chime and a notification.
 
+Listed and Verified on the [Omarchy plugin marketplace](https://plugins.omarchy.org/plugin.html?id=io.github.isjake.omatimer).
+
 <img src="preview.png" alt="A workout log in Neovim beside two Omatimer windows counting down, 18m17s and 44s, on the Tokyo Night theme" width="720">
 
 This is the shell-plugin version of [omatimer](https://github.com/isjake/omatimer),
-the standalone Qt app. It runs inside the Omarchy shell, so there's nothing to
-build and no binary to install.
+the older standalone Qt app, which is now deprecated. It runs inside the
+Omarchy shell, so there's nothing to build and no binary to install.
 
 ## Install
 
@@ -16,7 +18,7 @@ build and no binary to install.
 omarchy plugin add https://github.com/isjake/omatimer-plugin.git --enable
 ```
 
-Or find **Omatimer** in the plugin marketplace. Then open a timer from the
+Or find **Omatimer** in the [plugin marketplace](https://plugins.omarchy.org/plugin.html?id=io.github.isjake.omatimer). Then open a timer from the
 launcher (SUPER+SPACE → Omatimer) or the bar button, which lands on the right
 of the bar (drag it anywhere, or remove it: it's optional).
 
